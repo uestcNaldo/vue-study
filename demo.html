@@ -4,22 +4,100 @@
     <meta charset="UTF-8">
     <title>Vue-Demo</title>
     <script src="vue.js"></script>
+
 </head>
 <body>
 
 <div id="app">
-    {{ message }}
+    <span :title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+    <p v-if="seen">现在你看到我了</p>
 </div>
 
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+</div>
 
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue!'
-        }
-    })
+<div id="app-5">
+    <p>{{message}}</p>
+    <button @click="reverseMessage">逆转消息</button>
+</div>
 
-</script>
+<div id="app-6">
+    <p>{{message}}</p>
+    <label>
+        <input v-model="message">
+    </label>
+</div>
+
+<div id="app-7">
+    <ol>
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+        </todo-item>
+    </ol>
+</div>
+
+<div id="example">
+    <p>Original message: "{{message}}"</p>
+    <p>Computed reversed message: "{{reversedMessage}}"</p>
+
+</div>
+
+<div id="demo-name-1">{{fullName}}</div>
+<div id="demo-name-2">{{fullName}}</div>
+
+<div id="watch-example">
+    <p>
+        Ask a yes/no question:
+        <input v-model="question">
+    </p>
+    <p>{{answer}}</p>
+</div>
+
+<ul id="example-1">
+    <li v-for="item in items">
+        {{item.message}}
+    </li>
+</ul>
+
+<ul id="v-for-object">
+    <li v-for="(value,key) in object">
+        {{key}} : {{value}}
+    </li>
+</ul>
+
+<div id="example-2">
+    <button @click="greet">Greet</button>
+</div>
+<div id="demo-select-for">
+    <select v-model="selected">
+        <option v-for="option in options" :value="option.value">
+            {{option.text}}
+        </option>
+    </select>
+    <span>Selected: {{selected}}</span>
+</div>
+
+<div id="example-button">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+</div>
+
+<div id="counter-event-example">
+    <p>{{ total }}</p>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+
+<script src="demo.js"></script>
 </body>
 </html>
